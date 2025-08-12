@@ -1,6 +1,7 @@
 from stats import count_words
 from stats import count_letters
 from stats import sort_letter_count
+import sys
 
 def get_book_text(path):
 	with open(path) as b:
@@ -8,7 +9,10 @@ def get_book_text(path):
 		return text
 
 def main():
-	path = 'books/frankenstein.txt'
+	if (len(sys.argv) != 2):
+		print("Usage: python3 main.py <path_to_book>")
+		sys.exit(1)
+	path = sys.argv[1]
 	f = get_book_text(path)
 	w = count_words(f)
 	c = count_letters(f)
